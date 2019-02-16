@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "566563528123",
+    "firebase_url": "https://hophacks2019.firebaseio.com",
+    "project_id": "hophacks2019",
+    "storage_bucket": "hophacks2019.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:566563528123:android:2925cfbdd86807eb",
+        "android_client_info": {
+          "package_name": "com.example.mli25782.hophack2019v2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "566563528123-uam8oqrp7v46bh9luf62ugr8c8bkph96.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZQG_vAnHTWVmYmbQJKjq3eF1Crbdt5w4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
