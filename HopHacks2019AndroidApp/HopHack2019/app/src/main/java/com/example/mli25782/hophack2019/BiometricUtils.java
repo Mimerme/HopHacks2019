@@ -12,7 +12,7 @@ import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
-
+import android.hardware.biometrics.BiometricPrompt;
 import com.an.biometric.BiometricCallback;
 
 import java.io.IOException;
@@ -86,44 +86,4 @@ public class BiometricUtils {
         return ActivityCompat.checkSelfPermission(context, Manifest.permission.USE_FINGERPRINT) ==
                 PackageManager.PERMISSION_GRANTED;
     }
-
-    @TargetApi(Build.VERSION_CODES.P)
-    private void displayBiometricPrompt(final BiometricCallback biometricCallback) {
-        new BiometricPrompt.Builder(MainActivity.getAppContext())
-                .setTitle(title)
-                .setSubtitle(subtitle)
-                .setDescription(description)
-                .setNegativeButton(negativeButtonText, context.getMainExecutor(), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        biometricCallback.onAuthenticationCancelled();
-                    }
-                })
-                .build();
-    }
-
-    private void generateKey() {
-        try {
-
-            KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
-            keyStore.load(null);
-
-            keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore");
-            keyGenerator.init(new
-                    KeyGenParameterSpec.Builder(KEY_NAME, KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
-                    .setBlockModes(KeyProperties.BLOCK_MODE_CBC)
-                    .setUserAuthenticationRequired(true)
-                    .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_PKCS7)
-                    .build());
-
-            keyGenerator.generateKey();
-
-        } catch (KeyStoreException
-                | NoSuchAlgorithmException
-                | NoSuchProviderException
-                | InvalidAlgorithmParameterException
-                | CertificateException
-                | IOException exc) {
-            exc.printStackTrace();
-        }
 }
