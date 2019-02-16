@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "8084023471",
+    "firebase_url": "https://yeet-6f986.firebaseio.com",
+    "project_id": "yeet-6f986",
+    "storage_bucket": "yeet-6f986.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:8084023471:android:2925cfbdd86807eb",
+        "android_client_info": {
+          "package_name": "com.example.mli25782.hophack2019v2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "8084023471-h4o4ehducb5k392erfv0fdhjg2s9nru5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mli25782.hophack2019v2",
+            "certificate_hash": "71147c625d5fffa0c07a6985eb790b4779827c51"
+          }
+        },
+        {
+          "client_id": "8084023471-3gemdvbstngva5tqg023uldccdf8pkoa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAWafCHrrnM0YO-yLqLhB7WFxKCgo_jSU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "8084023471-3gemdvbstngva5tqg023uldccdf8pkoa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
