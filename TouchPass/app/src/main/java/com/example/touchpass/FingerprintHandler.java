@@ -19,8 +19,10 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
 
     private CancellationSignal cancellationSignal;
     private Context context;
+    private String sha256hex;
 
-    public FingerprintHandler(Context mContext) {
+    public FingerprintHandler(Context mContext, String sha256hex) {
+        this.sha256hex = sha256hex;
         context = mContext;
     }
 
@@ -66,6 +68,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
     public void onAuthenticationSucceeded(
             FingerprintManager.AuthenticationResult result) {
         Intent myIntent = new Intent(context, LoginActivity.class);
+        myIntent.putExtra("hash", sha256hex);
         context.startActivity(myIntent);
     }
 

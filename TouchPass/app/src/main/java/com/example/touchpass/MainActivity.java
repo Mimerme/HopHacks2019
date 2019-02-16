@@ -14,11 +14,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.TextView;
+import android.telephony.TelephonyManager;
 
 import com.example.touchpass.R;
+import com.google.common.hash.Hashing;
 
+import java.io.Console;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.NetworkInterface;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.KeyStore;
@@ -32,6 +37,11 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
+
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity{
 
     // Declare a string variable for the key we’re going to use in our fingerprint authentication
@@ -49,21 +59,11 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String password="asdf";
-        MessageDigest digest=null;
-        try {
-            digest = MessageDigest.getInstance("SHA-256");
-        } catch (NoSuchAlgorithmException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
-        digest.reset();
-        try {
-            Log.i("Eamorr",digest.digest(password.getBytes("UTF-8")).toString());
-        } catch (UnsupportedEncodingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        String originalString = getMacAddr();
+        String sha256hex = Hashing.sha256()
+                .hashString(originalString, StandardCharsets.UTF_8)
+                .toString();
+        Log.d("Original string: ", originalString);
 
         // If you’ve set your app’s minSdkVersion to anything lower than 23, then you’ll need to verify that the device is running Marshmallow
         // or higher before executing any fingerprint-related code
@@ -110,11 +110,37 @@ public class MainActivity extends AppCompatActivity{
 
                     // Here, I’m referencing the FingerprintHandler class that we’ll create in the next section. This class will be responsible
                     // for starting the authentication process (via the startAuth method) and processing the authentication process events//
-                    FingerprintHandler helper = new FingerprintHandler(this);
+                    FingerprintHandler helper = new FingerprintHandler(this, sha256hex);
                     helper.startAuth(fingerprintManager, cryptoObject);
                 }
             }
         }
+    }
+
+    public static String getMacAddr() {
+        try {
+            List<NetworkInterface> all = Collections.list(NetworkInterface.getNetworkInterfaces());
+            for (NetworkInterface nif : all) {
+                if (!nif.getName().equalsIgnoreCase("wlan0")) continue;
+
+                byte[] macBytes = nif.getHardwareAddress();
+                if (macBytes == null) {
+                    return "";
+                }
+
+                StringBuilder res1 = new StringBuilder();
+                for (byte b : macBytes) {
+                    res1.append(Integer.toHexString(b & 0xFF) + ":");
+                }
+
+                if (res1.length() > 0) {
+                    res1.deleteCharAt(res1.length() - 1);
+                }
+                return res1.toString();
+            }
+        } catch (Exception ex) {
+        }
+        return "02:00:00:00:00:00";
     }
 
 //Create the generateKey method that we’ll use to gain access to the Android keystore and generate the encryption key//
@@ -195,13 +221,4 @@ public class MainActivity extends AppCompatActivity{
             super(e);
         }
     }
-
-    @NonNull
-    static String bin2hex(byte[] data) {
-        StringBuilder hex = new StringBuilder(data.length * 2);
-        for (byte b : data)
-            hex.append(String.format("%02x", b & 0xFF));
-        return hex.toString();
-    }
-
 }
