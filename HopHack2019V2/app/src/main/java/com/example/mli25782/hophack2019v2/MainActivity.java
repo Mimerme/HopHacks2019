@@ -9,17 +9,21 @@ import android.os.Bundle;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.UnrecoverableKeyException;
@@ -45,6 +49,23 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        String password="asdf";
+        MessageDigest digest=null;
+        try {
+            digest = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        digest.reset();
+        try {
+            Log.i("Eamorr",digest.digest(password.getBytes("UTF-8")).toString());
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
 
         this.context = getApplicationContext();
 
@@ -183,5 +204,14 @@ public class MainActivity extends AppCompatActivity{
             super(e);
         }
     }
+
+    @NonNull
+    static String bin2hex(byte[] data) {
+        StringBuilder hex = new StringBuilder(data.length * 2);
+        for (byte b : data)
+            hex.append(String.format("%02x", b & 0xFF));
+        return hex.toString();
+    }
+
 }
 

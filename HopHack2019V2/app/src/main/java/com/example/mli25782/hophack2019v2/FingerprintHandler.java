@@ -65,7 +65,6 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
     //onAuthenticationSucceeded is called when a fingerprint has been successfully matched to one of the fingerprints stored on the user’s device//
     public void onAuthenticationSucceeded(
             FingerprintManager.AuthenticationResult result) {
-
         Intent myIntent = new Intent(context, LoginActivity.class);
         context.startActivity(myIntent);
     }

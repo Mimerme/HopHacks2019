@@ -1,20 +1,32 @@
 {
   "project_info": {
+<<<<<<< HEAD
     "project_number": "8084023471",
     "firebase_url": "https://yeet-6f986.firebaseio.com",
     "project_id": "yeet-6f986",
     "storage_bucket": "yeet-6f986.appspot.com"
+=======
+    "project_number": "566563528123",
+    "firebase_url": "https://hophacks2019.firebaseio.com",
+    "project_id": "hophacks2019",
+    "storage_bucket": "hophacks2019.appspot.com"
+>>>>>>> 3c9e6a3b07bffb8f51d8173d2eb7b9fcac7fba4e
   },
   "client": [
     {
       "client_info": {
+<<<<<<< HEAD
         "mobilesdk_app_id": "1:8084023471:android:2925cfbdd86807eb",
+=======
+        "mobilesdk_app_id": "1:566563528123:android:2925cfbdd86807eb",
+>>>>>>> 3c9e6a3b07bffb8f51d8173d2eb7b9fcac7fba4e
         "android_client_info": {
           "package_name": "com.example.mli25782.hophack2019v2"
         }
       },
       "oauth_client": [
         {
+<<<<<<< HEAD
           "client_id": "8084023471-h4o4ehducb5k392erfv0fdhjg2s9nru5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -24,12 +36,19 @@
         },
         {
           "client_id": "8084023471-3gemdvbstngva5tqg023uldccdf8pkoa.apps.googleusercontent.com",
+=======
+          "client_id": "566563528123-uam8oqrp7v46bh9luf62ugr8c8bkph96.apps.googleusercontent.com",
+>>>>>>> 3c9e6a3b07bffb8f51d8173d2eb7b9fcac7fba4e
           "client_type": 3
         }
       ],
       "api_key": [
         {
+<<<<<<< HEAD
           "current_key": "AIzaSyDAWafCHrrnM0YO-yLqLhB7WFxKCgo_jSU"
+=======
+          "current_key": "AIzaSyAZQG_vAnHTWVmYmbQJKjq3eF1Crbdt5w4"
+>>>>>>> 3c9e6a3b07bffb8f51d8173d2eb7b9fcac7fba4e
         }
       ],
       "services": {
@@ -37,6 +56,7 @@
           "status": 1
         },
         "appinvite_service": {
+<<<<<<< HEAD
           "status": 2,
           "other_platform_oauth_client": [
             {
@@ -44,6 +64,10 @@
               "client_type": 3
             }
           ]
+=======
+          "status": 1,
+          "other_platform_oauth_client": []
+>>>>>>> 3c9e6a3b07bffb8f51d8173d2eb7b9fcac7fba4e
         },
         "ads_service": {
           "status": 2
