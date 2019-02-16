@@ -66,8 +66,8 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
     public void onAuthenticationSucceeded(
             FingerprintManager.AuthenticationResult result) {
         Toast.makeText(context, "success", Toast.LENGTH_LONG).show();
-         vbIntent myIntent = new Intent(MainActivity.getContext(), LoginActivity.class);
-        MainActivity.getContext().startActivity(myIntent);
+        Intent myIntent = new Intent(context, LoginActivity.class);
+        context.startActivity(myIntent);
     }
 
 }
