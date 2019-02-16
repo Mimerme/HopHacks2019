@@ -1,20 +1,50 @@
 console.log("Running...");
 
-//Keep checking firebase to see if any requests have come in yet
+console.log("Looks like Firebase intialized");
+
+setTimeout(yeet, 500);
+
+function yeet(){
+	var xhr = new XMLHttpRequest();
+
+	xhr.open("GET", "http://localhost:8080/giff", false);
+	xhr.send();
+
+	var result = xhr.responseText;
+	console.log(result);
+
+	if(result != "none"){
+		var data = JSON.parse(result);
+		onData(data["username"], data["master"]);
+	}
+
+	setTimeout(yeet, 500);
+}
+
+function extractRootDomain(url) {
+    var result
+    var match
+    if (match = url.match(/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n\?\=]+)/im)) {
+        result = match[1]
+        if (match = result.match(/^[^\.]+\.(.+\..+)$/)) {
+            result = match[1]
+        }
+    }
+    return result
+}
+
+
+
 function onData(username, masterPass){
-    
-
-	
-
     //Get the current tab in focus and its domain name
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
      	var activeTab = tabs[0];
 
      	//Should get the hostname. Double check to be sure 
-     	var activeTabDomain = activeTab.hostname;
+     	var activeTabDomain = extractRootDomain(activeTab.url);
+     	console.log(activeTabDomain);
 
-
-     	simulateKeys(hash(activeTabDomain, masterPass));
+     	sendFields(activeTab, username, hash(activeTabDomain, masterPass));
      });
 }
 
@@ -22,16 +52,9 @@ function hash(domain, password){
 	return sha256(domain + ":" + password);
 }
 
-//Convert string into keypresses
-function simulateKeys(string){
-	for(var i = 0; i < string.length; i++){
-		var char = string.charAt(i);
-	}
-}
-
 function sendFields(tab, username, password){
 	console.log(tab);
-	chrome.tabs.sendMessage(tab.id ,{u: username, p: password}, function(response) {
+	chrome.tabs.sendMessage(tab.id ,{type: "execute", u: username, p: password}, function(response) {
   		console.log(response);
 	});
 }

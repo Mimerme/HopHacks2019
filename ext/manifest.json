@@ -9,6 +9,7 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
+  "content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com; object-src 'self'",
   "default_locale": "en",
   "background": {
     "scripts": [
@@ -23,7 +24,9 @@
     "default_popup": "src/browser_action/browser_action.html"
   },
   "permissions": [
-    "https://*/*"
+    "https://*/*",
+    "http://localhost:8080/*",
+    "tabs"
   ],
   "content_scripts": [
     {
