@@ -1,5 +1,6 @@
 package com.example.mli25782.hophack2019v2;
 import android.app.KeyguardManager;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
 import android.Manifest;
@@ -35,11 +36,14 @@ public class MainActivity extends AppCompatActivity {
     private FingerprintManager.CryptoObject cryptoObject;
     private FingerprintManager fingerprintManager;
     private KeyguardManager keyguardManager;
+    private static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        this.context = getApplicationContext();
 
         // If you’ve set your app’s minSdkVersion to anything lower than 23, then you’ll need to verify that the device is running Marshmallow
         // or higher before executing any fingerprint-related code
@@ -91,6 +95,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    public static Context getContext(){
+        return context;
     }
 
 //Create the generateKey method that we’ll use to gain access to the Android keystore and generate the encryption key//

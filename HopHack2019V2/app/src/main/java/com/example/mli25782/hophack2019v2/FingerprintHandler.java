@@ -2,6 +2,7 @@ package com.example.mli25782.hophack2019v2;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
 import android.Manifest;
@@ -65,7 +66,10 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
     public void onAuthenticationSucceeded(
             FingerprintManager.AuthenticationResult result) {
 
-        Toast.makeText(context, "Success!", Toast.LENGTH_LONG).show();
+        Intent myIntent = new Intent(MainActivity.getContext(), LoginActivity.class);
+        MainActivity.getContext().startActivity(myIntent);
     }
 
 }
+
+
