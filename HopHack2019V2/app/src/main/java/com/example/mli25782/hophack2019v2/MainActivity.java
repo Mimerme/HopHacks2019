@@ -15,8 +15,6 @@ import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.google.firebase.iid.FirebaseInstanceId;
-
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
@@ -68,8 +66,6 @@ public class MainActivity extends AppCompatActivity{
 
 
         this.context = getApplicationContext();
-
-        final String token = FirebaseInstanceId.getInstance().getToken();
         // If you’ve set your app’s minSdkVersion to anything lower than 23, then you’ll need to verify that the device is running Marshmallow
         // or higher before executing any fingerprint-related code
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
