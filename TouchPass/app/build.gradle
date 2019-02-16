@@ -25,5 +25,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+<<<<<<< HEAD
     implementation 'com.android.volley:volley:1.1.1'
+=======
+    implementation 'com.google.guava:guava:23.0-android'
+    implementation 'com.squareup.retrofit2:adapter-guava:2.3.0'
+>>>>>>> 54562d37950bf4d5a81d8a77fa2aaf1daaf34a1a
 }
