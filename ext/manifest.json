@@ -1,13 +1,13 @@
 {
-  "name": "CHANGE THIS : Extension boilerplate",
+  "name": "HuMmIng",
   "version": "0.0.1",
   "manifest_version": 2,
-  "description": "This extension was created with the awesome extensionizr.com",
-  "homepage_url": "http://extensionizr.com",
+  "description": "A stateless biometric password manager",
+  "homepage_url": "http://mimerme.github.io",
   "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
+    "16": "icons/humming.png",
+    "48": "icons/humming.png",
+    "128": "icons/humming.png"
   },
   "content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com; object-src 'self'",
   "default_locale": "en",
@@ -19,21 +19,20 @@
   },
   "options_page": "src/options_custom/index.html",
   "browser_action": {
-    "default_icon": "icons/icon19.png",
-    "default_title": "browser action demo",
-    "default_popup": "src/browser_action/browser_action.html"
   },
   "permissions": [
     "https://*/*",
     "http://localhost:8080/*",
-    "tabs"
+    "tabs",
+    "notifications"
   ],
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
       "js": [
         "src/inject/inject.js"
-      ]
+      ],
+      "css" : ["src/inject/inject.css"]
     }
   ]
 }

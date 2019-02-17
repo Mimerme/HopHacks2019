@@ -1,21 +1,31 @@
 console.log("Injected");
 
+var inject  = document.createElement("div");
+inject.innerHTML = "<div id=\"snackbar\">Setting Username and Password Fields...</div>"
+document.body.insertBefore (inject, document.body.firstChild);
+
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
   	if(request["type"] == "execute") {
 	  	var inputs = document.getElementsByTagName("input");
+	  		console.log(inputs);
+
 	  	for (var i=0; i<inputs.length; i++) {
 	    	if (inputs[i].type.toLowerCase() === "password") {
+	    		console.log("Password: " + inputs[i]);
 	      		inputs[i].value = request["p"].toString().slice(0, 15);
 	    		console.log(request["p"].toString().slice(0, 15));
 	    	}
 	    	//Try to find the username field I guess ¯\_(ツ)_/¯
-	    	else if((inputs[i].type.toLowerCase() === "text" || inputs[i].type.toLowerCase() === "email") && (inputs[i].outerHTML.toLowerCase().includes("email") || inputs[i].outerHTML.toLowerCase().includes("user"))){
-	    		console.log(request["u"]);
+	    	else if((inputs[i].type.toLowerCase() === "text" || inputs[i].type.toLowerCase() === "email") && ((inputs[i].outerHTML.toLowerCase().includes("email") 
+	    		|| inputs[i].outerHTML.toLowerCase().includes("user")) 
+	    		|| inputs[i].outerHTML.toLowerCase().includes("login"))){
+	    		console.log("Username: " + inputs[i]);
 	    		inputs[i].value = request["u"];
 	    	}
 	  	}
   	}
+	myFunction();	
   	sendResponse("Success!");
 });
 /*
@@ -42,3 +52,14 @@ messaging.getToken().then(function(currentToken) {
   console.log('An error occurred while retrieving token. ', err);
 });
 */
+
+function myFunction() {
+  // Get the snackbar DIV
+  var x = document.getElementById("snackbar");
+
+  // Add the "show" class to DIV
+  x.className = "yeeeeeeet";
+
+  // After 3 seconds, remove the show class from DIV
+  setTimeout(function(){ x.className = x.className.replace("yeeeeeeet", ""); }, 3000);
+}

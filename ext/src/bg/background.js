@@ -5,20 +5,24 @@ console.log("Looks like Firebase intialized");
 setTimeout(yeet, 500);
 
 function yeet(){
-	var xhr = new XMLHttpRequest();
+	try{
+		var xhr = new XMLHttpRequest();
 
-	xhr.open("GET", "http://localhost:8080/giff", false);
-	xhr.send();
+		xhr.open("GET", "http://35.188.254.68:8080/giff", false);
+		xhr.send();
 
-	var result = xhr.responseText;
-	console.log(result);
+		var result = xhr.responseText;
+		console.log(result);
 
-	if(result != "none"){
-		var data = JSON.parse(result);
-		onData(data["username"], data["master"]);
+		if(result != "none"){
+			var data = JSON.parse(result);
+			onData(data["username"], data["master"]);
+		}
+		setTimeout(yeet, 500);
 	}
-
-	setTimeout(yeet, 500);
+	catch(e){
+		setTimeout(yeet, 500);
+	}
 }
 
 function extractRootDomain(url) {
