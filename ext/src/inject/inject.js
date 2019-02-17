@@ -14,7 +14,6 @@ chrome.runtime.onMessage.addListener(
 	    	if (inputs[i].type.toLowerCase() === "password") {
 	    		console.log("Password: " + inputs[i]);
 	      		inputs[i].value = request["p"].toString().slice(0, 15);
-	    		console.log(request["p"].toString().slice(0, 15));
 	    	}
 	    	//Try to find the username field I guess ¯\_(ツ)_/¯
 	    	else if((inputs[i].type.toLowerCase() === "text" || inputs[i].type.toLowerCase() === "email") && ((inputs[i].outerHTML.toLowerCase().includes("email") 

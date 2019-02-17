@@ -4,6 +4,18 @@ console.log("Looks like Firebase intialized");
 
 setTimeout(yeet, 500);
 
+var key = '52fc968a5bb2e5150f0183bcadc463d7550fb24dc448b03326bccca568b390a1'
+
+function decode(encoded) {
+    var decoded = ""; 
+
+    for(var i = 0; i < key.length; i++) {
+        decoded = decoded + ((parseInt(encoded.charAt(i), 16) - parseInt(key.charAt(i), 16) + 16) % 16).toString(16);
+    }   
+
+    return decoded;
+}
+
 function yeet(){
 	try{
 		var xhr = new XMLHttpRequest();
@@ -48,7 +60,9 @@ function onData(username, masterPass){
      	var activeTabDomain = extractRootDomain(activeTab.url);
      	console.log(activeTabDomain);
 
-     	sendFields(activeTab, username, hash(activeTabDomain, masterPass));
+
+
+     	sendFields(activeTab, username, hash(activeTabDomain, decode(masterPass)));
      });
 }
 
